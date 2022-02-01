@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mt-5">
+                <div class="card-header">Paslaugu vertinimas</div>
+                <div class="card-body">
+                    
+                    <ul class="list-group" *ngIf="!loading" >
+                        <li class="list-group-item" *ngFor="let appraisal of appraisals">
+                            <b>{{ appraisal.namesurn }}:</b>
+                            {{appraisal.ivert}}
+                            <!-- <span *ngFor="let x of [].constructor(appraisal.ivert * 1)">*</span> -->
+                            
+                            {{ appraisal.komentaras }}
+                        </li>
+                    </ul>
+                    
+                    <div class="alert alert-info" *ngIf="loading && !error">Kraunasi ...</div>
+                    <div class="alert alert-danger" *ngIf="error">
+                        <h1>Įvyko klaida</h1>
+                        <p>{{ error }}</p>
+                    </div>
+                    
+                    <hr>
+                    <div class="mb-3">
+                        <label class="form-label">Jūsų vardas, pavarde</label>
+                        <input type="text" name="vardas, pavarde" class="form-control" #namesurn>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Jūsų ivertinimas</label>
+                        <select name="" id="" #ivert>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">Jūsų komentaras</label>
+                        <input type="text" name="komentaras" class="form-control" #text>
+                    </div>
+                    <button class="btn btn-success" (click)="send(namesurn.value, ivert.value, text.value)">Siųsti</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
